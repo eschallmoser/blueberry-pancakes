@@ -225,30 +225,152 @@
 
 //methods are functions that you can apply directly to an array
 
-const friends = ["Michael", "Steven", "Peter"];
+// const friends = ["Michael", "Steven", "Peter"];
 
-//we can add an element to the end of an array
-// friends.push("Jay");
-console.log(friends);
+// //we can add an element to the end of an array
+// // friends.push("Jay");
+// console.log(friends);
 
-//push can return a value as well
-const newLength = friends.push("Jay");
-console.log(newLength); //4
+// //push can return a value as well
+// const newLength = friends.push("Jay");
+// console.log(newLength); //4
 
-//we can add an element to the beginning of an array
-friends.unshift("John");
-console.log(friends);
+// //we can add an element to the beginning of an array
+// friends.unshift("John");
+// console.log(friends);
 
-//we can remove an element from the end of an array
-console.log(friends.pop()); //don't need to pass in an argument, it's going to take the last element
-//pop returns the removed element as its value--Jay
-console.log(friends); //Jay is gone
+// //we can remove an element from the end of an array
+// console.log(friends.pop()); //don't need to pass in an argument, it's going to take the last element
+// //pop returns the removed element as its value--Jay
+// console.log(friends); //Jay is gone
 
 //we can remove an element from the beginning of an array
-friends.shift(); //first
-console.log(friends); //John is gone
+// friends.shift(); //first
+// console.log(friends); //John is gone
 
-//-------------------------------------------------------------------------
+// console.log(friends.indexOf("Steven")); //returns number--index of 1
+// console.log(friends.indexOf("Bob")); //returns -1 because Bob is not an element that exists in the friends array
+
+// console.log(friends.includes("Steven")); //returns true
+// console.log(friends.includes("Bob")); //returns false
+// //includes method uses strict equality
+
+// //we can use the includes method to write conditional statements
+
+// if (friends.includes("Peter")) {
+//   console.log("You have a friend called Peter");
+// }
+
+//------------------------------------------------------------------------
+
+//Introduction to Objects:
+
+// const jonas = {
+//   firstName: "Jonas",
+//   lastName: "Schmedtmann",
+//   age: 2037 - 1991,
+//   job: "teacher",
+//   friends: ["Michael", "Peter", "Steven"],
+// };
+
+//key value pairs, can't do that in arrays
+//each key is called a property
+
+//ojbects should be used for less structured data, data that we actually want to name and retrieve by name
+
+//------------------------------------------------------------------------
+
+//Dot vs. Bracket Notation:
+// const jonas = {
+//   firstName: "Jonas",
+//   lastName: "Schmedtmann",
+//   age: 2037 - 1991,
+//   job: "teacher",
+//   friends: ["Michael", "Peter", "Steven"],
+// };
+// console.log(jonas);
+
+// //accessing values in object using dot notation
+// console.log(jonas.lastName);
+
+// //we can do it using brackets as well
+
+// console.log(jonas["lastName"]);
+
+//inside the brackets we don't have to stick just to keys, we can insert expressions as well...
+// const nameKey = "Name";
+// console.log(jonas["first" + nameKey]);
+// console.log(jonas["last" + nameKey]);
+
+// const interestedIn = prompt(
+//   "What do you want to know about Jonas? Choose between firstName, lastName, age, job, and friends"
+// );
+// console.log(interestedIn);
+// console.log(jonas[interestedIn]); //returns teacher, if user inputs job, etc...
+
+// if (jonas[interestedIn]) {
+//   console.log(jonas[interestedIn]);
+// } else {
+//   console.log("Wrong request!");
+// }
+
+//adding properties to object
+// jonas.location = "Portugal";
+// jonas["twitter"] = "@jonasschmedtman";
+// console.log(jonas);
+
+//Challenge
+//recreate this sentence in a dynamic way, with no hard-coding
+//"Jonas has three friends, and his best friend is called Michael"
+
+// console.log(
+//   `${jonas.firstName} has ${jonas.friends.length} friends, and his best friend is called ${jonas.friends[0]}`
+// );
+
+//----------------------------------------------------------------------
+
+//Object Methods:
+
+//object methods are functions attached to an object
+
+// const jonas = {
+//   firstName: "Jonas",
+//   lastName: "Schmedtmann",
+//   birthYear: 1991,
+//   job: "teacher",
+//   friends: ["Michael", "Peter", "Steven"],
+//   hasDriversLicense: true,
+// calcAge: function (birthYear) {
+//   return 2037 - birthYear;
+// },
+
+// calcAge: function () {
+//   // console.log(this);
+//   return 2037 - this.birthYear;
+// },
+
+//instead of continally calling this function every time we need to use the age variable, we can calculate it just once and store it in the object
+//   calcAge: function () {
+//     this.age = 2037 - this.birthYear;
+//     return this.age;
+//   },
+
+//   //Challenge: write a method that returns this string
+//   //"Jonas is a 46-year old teacher, and he has a driver's license"
+//   getSummary: function () {
+//     return `${this.firstName} is a ${this.calcAge()}-year old ${
+//       this.job
+//     }, and he has ${this.hasDriversLicense ? "a" : "no"} driver's license.`;
+//   },
+// };
+
+// console.log(jonas.calcAge());
+
+// //instead of calling function again we can access age value like this
+// console.log(jonas.age);
+// console.log(jonas.getSummary());
+
+//-----------------------------------------------------------------------
 
 //ASSIGNMENTS
 
@@ -315,11 +437,54 @@ console.log(friends); //John is gone
 
 // console.log(percentages);
 
-//-------------------------------------------------------------------------
+// const neighbors = ["France", "Switzerland", "Austria"];
+// console.log(neighbors);
+// neighbors.push("Utopia");
+// console.log(neighbors);
+// neighbors.pop();
+// console.log(neighbors);
 
-//CODING CHALLENGES
+// if (!neighbors.includes("Germany")) {
+//   console.log("Probably not a central European country :D");
+// }
+// neighbors[2] = "Republic of Austria";
+// console.log(neighbors);
 
-//Coding Challenge #1
+// const myCountry = {
+//   country: "Italy",
+//   capital: "Rome",
+//   language: "Italian",
+//   population: 60,
+//   neighbors: ["France", "Switzerland", "Austria"],
+
+//   describe: function () {
+//     console.log(
+//       `${this.country} has ${this.population} million ${this.language}-speaking people, ${this.neighbors.length} neighboring countries, and a capital called ${this.capital}.`
+//     );
+//   },
+
+//   checkIsland: function () {
+//     this.isIsland = this.neighbors.length === 0 ? true : false;
+//     // this.hasDriversLicense ? "a" : "no"} driver's license.
+//   },
+// };
+
+// myCountry.describe();
+// myCountry.checkIsland();
+// console.log(myCountry.isIsland);
+// console.log(
+//   `${myCountry.country} has ${myCountry.population} million ${myCountry.language}-speaking people, ${myCountry.neighbors.length} neighboring countries, and a capital called ${myCountry.capital}`
+// );
+
+// myCountry.population += 2;
+// console.log(myCountry.population);
+// myCountry["population"] -= 2;
+// console.log(myCountry.population);
+// -----------------------------------------------------------------------
+
+// CODING CHALLENGES
+
+// Coding Challenge #1
 
 // const calcAverage = (score1, score2, score3) => (score1 + score2 + score3) / 3;
 
@@ -337,3 +502,23 @@ console.log(friends); //John is gone
 // };
 
 // checkWinner(avgDolphins, avgKoalas);
+
+// Coding Challenge #2
+
+// const calcTip = (bill) => {
+//   if (bill >= 50 && bill <= 300) {
+//     return bill * 0.15;
+//   } else {
+//     return bill * 0.2;
+//   }
+// };
+
+// const bills = [125, 555, 44];
+
+// const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
+
+// console.log(tips);
+
+// const totals = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
+
+// console.log(totals);
