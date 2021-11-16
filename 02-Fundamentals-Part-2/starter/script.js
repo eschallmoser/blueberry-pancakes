@@ -370,6 +370,137 @@
 // console.log(jonas.age);
 // console.log(jonas.getSummary());
 
+//------------------------------------------------------------------------
+
+//Iteration: The For Loop:
+
+//loops allow us to automate repetitive tasks
+
+//doing it this way is NOT best practice
+// console.log("Lifting weights repetition 1");
+// console.log("Lifting weights repetition 2");
+// console.log("Lifting weights repetition 3");
+// console.log("Lifting weights repetition 4");
+// console.log("Lifting weights repetition 5");
+// console.log("Lifting weights repetition 6");
+// console.log("Lifting weights repetition 7");
+// console.log("Lifting weights repetition 8");
+// console.log("Lifting weights repetition 9");
+// console.log("Lifting weights repetition 10");
+
+//instead we can do a for loop
+//for loop keeps running while condition is true
+// for (let rep = 1; rep <= 10; rep++) {
+//   console.log(`Lifting weights repetition ${rep} 🏋️‍♀️`);
+// }
+
+//-------------------------------------------------------------------------
+
+//Looping Arrays, Breaking and Continuing
+
+//one of the most useful applications of for loops is to loop through arrays
+
+// const jonas = [
+//   "Jonas",
+//   "Schmedtmann",
+//   2037 - 1991,
+//   "teacher",
+//   ["Michael", "Peter", "Steven"],
+//   true,
+// ];
+
+// const types = [];
+
+// for (let i = 0; i < jonas.length; i++) {
+//   //reading from array
+//   console.log(jonas[i], typeof jonas[i]);
+//   //Filling types array
+//   // types[i] = typeof jonas[i];
+//   types.push(typeof jonas[i]);
+// }
+
+// console.log(types);
+
+// const years = [1991, 2007, 1969, 2020];
+// const ages = [];
+
+// for (let i = 0; i < years.length; i++) {
+//   ages.push(2037 - years[i]);
+// }
+
+// console.log(ages);
+
+//continue and break
+//continue is to exit the current iteration and go to the next iteration of the loop immediately
+// console.log("-------ONLY STRINGS--------");
+// for (let i = 0; i < jonas.length; i++) {
+//   if (typeof jonas[i] !== "string") continue; //don't do the rest of the code for this iteration, we only want to log strings
+
+//   console.log(jonas[i], typeof jonas[i]);
+// }
+
+// //break is to exit the loop completely
+
+// console.log("-------BREAK WITH NUMBER--------");
+// for (let i = 0; i < jonas.length; i++) {
+//   if (typeof jonas[i] === "number") break; //after the first number is found, loop is terminated, nothing more is logged to console
+//   console.log(jonas[i], typeof jonas[i]);
+// }
+
+//----------------------------------------------------------------------
+
+//Looping Backwards and Loops in Loops:
+
+// const jonas = [
+//   "Jonas",
+//   "Schmedtmann",
+//   2037 - 1991,
+//   "teacher",
+//   ["Michael", "Peter", "Steven"],
+// ];
+
+// //looping backwards
+// for (let i = jonas.length - 1; i >= 0; i--) {
+//   console.log(i, jonas[i]);
+// }
+
+//looping inside of a loop
+// for (let exercise = 1; exercise < 4; exercise++) {
+//   console.log(`-------------------Starting exercise ${exercise}`);
+
+//   for (let rep = 1; rep < 6; rep++) {
+//     console.log(`Exercise ${exercise}: Lifting weights repetition ${rep} 🏋️‍♀️`);
+//   }
+// }
+
+//-----------------------------------------------------------------------
+
+//The While Loop:
+
+// for (let rep = 1; rep <= 10; rep++) {
+//   console.log(`Lifting weights repetition ${rep} 🏋️‍♀️`);
+// }
+
+// let rep = 1; //this has to be specified outside of loop for this while loop, but you don't always need that for a while loop
+
+// //with a while loop, you can only specify a condition
+// while (rep <= 10) {
+//   console.log(`Lifting weights repetition ${rep} 🏋️‍♀️`);
+//   rep++;
+// }
+
+//while loop is more versatile and can be used in many different ways than a for loop
+//while loop does not have to depend on a counter variable, so if you don't know how many iterations a loop will have, a while loop is a good option, perhaps a better option than the for loop
+
+// let dice = Math.trunc(Math.random() * 6) + 1;
+// // console.log(dice);
+
+// while (dice !== 6) {
+//   console.log(`You rolled a ${dice}`);
+//   dice = Math.trunc(Math.random() * 6) + 1;
+//   if (dice === 6) console.log("Loop is about to end...");
+// }
+
 //-----------------------------------------------------------------------
 
 //ASSIGNMENTS
@@ -480,6 +611,37 @@
 // console.log(myCountry.population);
 // myCountry["population"] -= 2;
 // console.log(myCountry.population);
+
+// for (let voter = 1; voter <= 50; voter++) {
+//   console.log(`Voter number ${voter} is currently voting`);
+// }
+
+// function percentageOfWorld1(population) {
+//   return (population / 7900) * 100;
+// }
+
+// const percentages2 = [];
+
+// const populations = [329.5, 206.1, 97.34, 105];
+
+// for (let i = 0; i < populations.length; i++) {
+//   percentages2.push(percentageOfWorld1(populations[i]));
+// }
+
+// console.log(percentages2);
+
+// const listOfNeighbors = [
+//   ["Canada", "Mexico"],
+//   ["Spain"],
+//   ["Norway", "Sweden", "Russia"],
+// ];
+
+// for (let i = 0; i < listOfNeighbors.length; i++) {
+//   for (let j = 0; j < listOfNeighbors[i].length; j++) {
+//     console.log(`Neighbor: ${listOfNeighbors[i][j]}`);
+//   }
+// }
+
 // -----------------------------------------------------------------------
 
 // CODING CHALLENGES
@@ -522,3 +684,72 @@
 // const totals = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
 
 // console.log(totals);
+
+//Coding Challenge #3
+
+// const markInfo = {
+//   fullName: "Mark Miller",
+//   mass: 78,
+//   height: 1.69,
+
+//   calcBMI: function () {
+//     this.bmi = this.mass / this.height ** 2;
+//     return this.bmi;
+//   },
+// };
+
+// const johnInfo = {
+//   fullName: "John Smith",
+//   mass: 92,
+//   height: 1.95,
+
+//   calcBMI: function () {
+//     this.bmi = this.mass / this.height ** 2;
+//     return this.bmi;
+//   },
+// };
+
+// markInfo.calcBMI();
+// johnInfo.calcBMI();
+
+// if (markInfo.calcBMI > johnInfo.calcBMI) {
+//   console.log(
+//     `${markInfo.fullName}'s BMI (${markInfo.bmi}) is higher than ${johnInfo.fullName}'s (${johnInfo.bmi})!`
+//   );
+// } else {
+//   console.log(
+//     `${johnInfo.fullName}'s BMI (${johnInfo.bmi}) is higher than ${markInfo.fullName}'s (${markInfo.bmi})!`
+//   );
+// }
+
+//Coding Challenge #4
+// const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+// const tips = [];
+// const totals = [];
+
+// const calcTip = (bill) => {
+//   if (bill >= 50 && bill <= 300) {
+//     return bill * 0.15;
+//   } else {
+//     return bill * 0.2;
+//   }
+// };
+
+// for (let i = 0; i < bills.length; i++) {
+//   tips.push(calcTip(bills[i]));
+//   totals.push(bills[i] + tips[i]);
+//   console.log(tips);
+//   console.log(totals);
+// }
+
+// //Bonus
+// let sum = 0;
+
+// const calcAverage = (arr) => {
+//   for (let i = 0; i < arr.length; i++) {
+//     sum += arr[i];
+//   }
+//   return sum / arr.length;
+// };
+
+// console.log(calcAverage(totals));
