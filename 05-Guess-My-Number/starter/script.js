@@ -14,15 +14,17 @@
 //Handling Click Events, Implementing Game Logic
 
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
-
 let score = 20;
-
 let highScore = 0;
+
+const displayMessage = function (message) {
+  document.querySelector('.message').textContent = message;
+};
 
 document.querySelector('.again').addEventListener('click', function () {
   score = 20;
   secretNumber = Math.trunc(Math.random() * 20) + 1;
-  document.querySelector('.message').textContent = 'Start guessing...';
+  displayMessage('Start guessing...');
   document.querySelector('.score').textContent = score;
   document.querySelector('.number').textContent = '?';
   document.querySelector('.guess').value = '';
@@ -32,51 +34,37 @@ document.querySelector('.again').addEventListener('click', function () {
 
 document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value);
-  console.log(guess, typeof guess);
-  console.log(secretNumber);
+  // console.log(guess, typeof guess);
+  // console.log(secretNumber);
 
-  //when there is no input
   if (!guess) {
-    document.querySelector('.message').textContent = '⛔ No number!';
-
-    //when player wins
+    displayMessage('⛔ No number!');
   } else if (guess === secretNumber) {
     if (score > highScore) {
       highScore = score;
       document.querySelector('.highscore').textContent = highScore;
     }
-    document.querySelector('.message').textContent = 'Correct Number!🎉';
+    score = 0;
+    displayMessage('Correct Number!🎉');
     document.querySelector('.number').textContent = secretNumber;
-    // highScore = score;
-    // document.querySelector('.highscore').textContent = highScore;
-
     document.querySelector('body').style.backgroundColor = '#60b347';
     document.querySelector('.number').style.width = '30rem';
-
-    //when guess is too high
-  } else if (guess > secretNumber) {
+  } else if (guess !== secretNumber) {
     if (score > 1) {
-      document.querySelector('.message').textContent = 'Too high! 👇';
+      displayMessage(guess > secretNumber ? 'Too high! 👇' : 'Too low! ☝');
       score--;
       document.querySelector('.score').textContent = score;
     } else {
-      document.querySelector('.message').textContent = 'You lost the game! 💥';
-      document.querySelector('.score').textContent = 0;
-      document.querySelector('.number').textContent = '☹';
-      document.querySelector('body').style.backgroundColor = 'red';
-    }
-
-    //when guess is too low
-  } else if (guess < secretNumber) {
-    if (score > 1) {
-      document.querySelector('.message').textContent = 'Too low! ☝';
-      score--;
-      document.querySelector('.score').textContent = score;
-    } else {
-      document.querySelector('.message').textContent = 'You lost the game! 💥';
+      displayMessage('You lost the game! 💥');
       document.querySelector('.score').textContent = 0;
       document.querySelector('.number').textContent = '☹';
       document.querySelector('body').style.backgroundColor = 'red';
     }
   }
 });
+
+//Refactoring:
+
+//identify the duplicate code that exists in your code base
+//what is both sets of duplicate code doing, and how can it be combined into a single code block?
+//you can create functions to help with duplicate code
