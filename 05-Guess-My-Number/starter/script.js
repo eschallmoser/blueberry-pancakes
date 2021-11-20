@@ -12,30 +12,24 @@
 // console.log(document.querySelector('.guess').value);
 
 //Handling Click Events, Implementing Game Logic
+const generateSecretNumber = () => {
+  return Math.trunc(Math.random() * 20) + 1;
+};
 
-let secretNumber = Math.trunc(Math.random() * 20) + 1;
+const enableOrDisableCheckButton = disable => {
+  document.getElementsByClassName('check')[0].disabled = disable;
+};
+
+let secretNumber = generateSecretNumber();
 let score = 20;
 let highScore = 0;
 
-const displayMessage = function (message) {
+const displayMessage = message => {
   document.querySelector('.message').textContent = message;
 };
 
-document.querySelector('.again').addEventListener('click', function () {
-  score = 20;
-  secretNumber = Math.trunc(Math.random() * 20) + 1;
-  displayMessage('Start guessing...');
-  document.querySelector('.score').textContent = score;
-  document.querySelector('.number').textContent = '?';
-  document.querySelector('.guess').value = '';
-  document.querySelector('body').style.backgroundColor = '#222';
-  document.querySelector('.number').style.width = '15rem';
-});
-
-document.querySelector('.check').addEventListener('click', function () {
+document.querySelector('.check').addEventListener('click', () => {
   const guess = Number(document.querySelector('.guess').value);
-  // console.log(guess, typeof guess);
-  // console.log(secretNumber);
 
   if (!guess) {
     displayMessage('⛔ No number!');
@@ -44,7 +38,8 @@ document.querySelector('.check').addEventListener('click', function () {
       highScore = score;
       document.querySelector('.highscore').textContent = highScore;
     }
-    score = 0;
+    // score = 0;
+    enableOrDisableCheckButton(true);
     displayMessage('Correct Number!🎉');
     document.querySelector('.number').textContent = secretNumber;
     document.querySelector('body').style.backgroundColor = '#60b347';
@@ -62,6 +57,21 @@ document.querySelector('.check').addEventListener('click', function () {
     }
   }
 });
+
+document.querySelector('.again').addEventListener('click', () => {
+  score = 20;
+  enableOrDisableCheckButton(false);
+  secretNumber = generateSecretNumber();
+  displayMessage('Start guessing...');
+  document.querySelector('.score').textContent = score;
+  document.querySelector('.number').textContent = '?';
+  document.querySelector('.guess').value = '';
+  document.querySelector('body').style.backgroundColor = '#222';
+  document.querySelector('.number').style.width = '15rem';
+});
+
+//challege:
+//create easter egg--when you hover over exclamation point, secret number becomes visible in very subtle way, gradient
 
 //Refactoring:
 
