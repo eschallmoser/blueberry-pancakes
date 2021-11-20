@@ -42,7 +42,16 @@ document.querySelector('.check').addEventListener('click', () => {
     enableOrDisableCheckButton(true);
     displayMessage('Correct Number!🎉');
     document.querySelector('.number').textContent = secretNumber;
-    document.querySelector('body').style.backgroundColor = '#60b347';
+    if (score === 7) {
+      document.querySelector('body').style.backgroundColor = '#6d32a8';
+      const tag = document.createElement('p');
+      tag.setAttribute('class', 'seven');
+      tag.textContent = 'YOU GOT THE LUCKY SEVEN SCORE!';
+      const element = document.querySelector('.right');
+      element.appendChild(tag);
+    } else {
+      document.querySelector('body').style.backgroundColor = '#60b347';
+    }
     document.querySelector('.number').style.width = '30rem';
   } else if (guess !== secretNumber) {
     if (score > 1) {
@@ -59,6 +68,7 @@ document.querySelector('.check').addEventListener('click', () => {
 });
 
 document.querySelector('.again').addEventListener('click', () => {
+  document.querySelector('.seven').remove();
   score = 20;
   enableOrDisableCheckButton(false);
   secretNumber = generateSecretNumber();
@@ -72,6 +82,26 @@ document.querySelector('.again').addEventListener('click', () => {
 
 //challege:
 //create easter egg--when you hover over exclamation point, secret number becomes visible in very subtle way, gradient
+
+document
+  .querySelector('.easter-egg')
+  .addEventListener('mouseover', function () {
+    // alert('mouse over test!');
+    document.querySelector('.number').textContent = secretNumber;
+    document.querySelector('.number').style.backgroundColor = '#f5b8ea';
+
+    const tag = document.createElement('p');
+    tag.setAttribute('class', 'secret');
+    tag.textContent = "Shh...it's a secret";
+    const element = document.getElementById('header');
+    element.appendChild(tag);
+  });
+
+document.querySelector('.easter-egg').addEventListener('mouseout', function () {
+  document.querySelector('.number').textContent = '?';
+  document.querySelector('.number').style.backgroundColor = '#eee';
+  document.querySelector('.secret').remove();
+});
 
 //Refactoring:
 
