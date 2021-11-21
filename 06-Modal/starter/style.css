@@ -53,6 +53,18 @@ p {
   font-size: 1.8rem;
 }
 
+.secret {
+  background: linear-gradient(
+    to right,
+    orange,
+    yellow,
+    green,
+    cyan,
+    blue,
+    violet
+  );
+}
+
 /* -------------------------- */
 /* CLASSES TO MAKE MODAL WORK */
 .hidden {
