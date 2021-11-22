@@ -35,3 +35,14 @@ document.addEventListener('keydown', function (event) {
     modal.classList.remove('secret');
   }
 });
+
+//challenge: + key creates new modal button with correct number, ascending for each button newly created
+document.addEventListener('keydown', function (event) {
+  if (event.key === '+') {
+    const btn = document.createElement('button');
+    const btnsOpenModal = document.querySelectorAll('.show-modal');
+    btn.innerHTML += `Show modal ${btnsOpenModal.length + 1}`;
+    btn.classList.add('show-modal');
+    document.body.appendChild(btn);
+  }
+});
